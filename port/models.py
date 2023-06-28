@@ -26,7 +26,7 @@ class Skills(models.Model):
     ("SQL", "SQL"),
     ("SQ", "SQLite3"),
     ("PG", "Postgrels"),
-    ("MQ", MySQL"),
+    ("MQ", "MySQL"),
     ("RA", "RESTAPI"),
     ("DRF", "Django Rest Framework"),
 ]
