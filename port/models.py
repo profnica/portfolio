@@ -7,7 +7,7 @@ class Category(models.Model):
     ("MA", "Mobile Application"),
     ("DA", "Desktop Application"),
 ]
-    category= models.CharField(max_length=30)
+    category= models.CharField(max_length=3, choices= Category_used)
     
 class Skills(models.Model):
     Skill_Used = [
