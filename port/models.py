@@ -2,10 +2,35 @@ from django.db import models
 
 
 class Category(models.Model):
+    Category_used= [
+    ("WD", "Web development"),
+    ("MA", "Mobile Application"),
+    ("DA", "Desktop Application"),
+]
     category= models.CharField(max_length=30)
     
 class Skills(models.Model):
-    skill= models.CharField(max_length=30)    
+    Skill_Used = [
+    ("DJ", "Django"),
+    ("PY", "Python"),
+    ("FL", "Flask"),
+    ("WB", "Web2py"),
+    ("AWS", "AWS"),
+    ("HT", "HTML"),
+    ("JS", "JavaScript"),
+    ("TY", "Typescript"),
+    ("JA", "Java"),
+    ("CSS", "CSS"),
+    ("DC", "Docker"),
+    ("PHP", "PHP"),
+    ("SQL", "SQL"),
+    ("SQ", "SQLite3"),
+    ("PG", "Postgrels"),
+    ("MQ", MySQL"),
+    ("RA", "RESTAPI"),
+    ("DRF", "Django Rest Framework"),
+]
+    skill= models.CharField(max_length=3, choices=Skill_Used)    
 
 class Projects(models.Model):
     title= models.CharField(max_length=30)
