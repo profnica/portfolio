@@ -35,7 +35,7 @@ class Skills(models.Model):
 class Projects(models.Model):
     title= models.CharField(max_length=30)
     description= models.CharField(max_length=250)
-    category= models.ManyToManyField(Category)
+    category= models.ForeignKey(Category, on_delete= models.CASCADE)
     skill= models.ForeignKey(Skills, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now=True)
     update= models.DateTimeField(auto_now_add=True)
