@@ -50,7 +50,6 @@ class Projects(models.Model):
 class BlogPost(models.Model):
     title= models.CharField(max_length=50)
     descriptions= models.CharField(max_length=300)
-    category= models.ManyToManyField(Category)
     content= models.TextField()
     pub_date = models.DateTimeField(auto_now=True)
     
