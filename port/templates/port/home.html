@@ -1,8 +1,46 @@
-{% include 'main.html'%}
+{% extends 'main.html' %}
 
+{%load static %}
 {% block content %}
 
-<h1> My portfolio</h1>
+  <!-- Eye-catching Elements -->
+  <div class="eye-catching-elements">
+    <p>Welcome to my portfolio website! My name is Adefolalu Adegboyega. 
+    I'm a passionate developer with expertise in python programming languages and 
+    technologies. Feel free to explore my projects and get in touch.</p>
+  </div>
 
+  <!-- Programming Language Icons -->
+  <div class="programming-icons">
+    <img src="{% static 'Images/python.png' %}" alt="Python">
+    <img src="{% static 'Images/django.png' %}" alt="Django">
+    <img src="{% static 'Images/html.png' %}" alt="HTML">
+    <img src="{% static 'Images/css-3.png' %}" alt="CSS">
+    <img src="{% static 'Images/docker.png' %}" alt="Docker">
+    <img src="{% static 'Images/kubernetes.png' %}" alt="Kubernetes">
+    <img src="{% static 'Images/mysql.png' %}" alt=",MySQL">
+    <!-- Add more programming language icons as needed -->
+  </div>
 
+  <!-- Social Media Icons (Footer) -->
+  <footer id="main-footer">
+    <div class="social-media-icons">
+        <a href="https://twitter.com/profnica10" class="icon-button twitter"><i class="fa fa-twitter"></i>
+            <span></span>
+        </a>
+        <a href="https://web.facebook.com/profnica.tpaing" class="icon-button facebook"><i class="fa fa-facebook"></i>
+            <span></span>
+        </a>
+        <a href="mailto:your.akinolaay056@gmail.com" class="icon-button google"><i class="fa fa-google"></i>
+            <span></span>
+        </a>
+        <a href="https://www.linkedin.com/in/adegboyega-adefolalu-810729190/" class="icon-button linkedin"><i class="fa fa-linkedin"></i>
+            <span></span>
+        </a>
+        <a href="https://www.github.com/profnica" class="icon-button github"><i class="fa fa-github"></i>
+            <span></span>
+        </a>
+    </div>
+    <p>Copyright &copy; 2023, Adefolalu</p>
+</footer>
 {% endblock %}
