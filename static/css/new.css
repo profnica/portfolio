@@ -1,0 +1,28 @@
+/*    Nav Section */
+
+#navbar ul{
+    display: flex;
+    justify-content:center;
+}
+
+#navbar li{
+    list-style: none;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#navbar li a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #130e9a;   
+}
+
+#navbar li a:hover{
+    font-size: 20px;
+    color: orangered;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s;
+}
+                

@@ -1,8 +1,8 @@
-<!-- skill_edit.html -->
+<!-- skill_add.html -->
 {% extends 'main.html' %}
 
 {% block content %}
-  <h1>Edit Projects</h1>
+  <h1>Add Project</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

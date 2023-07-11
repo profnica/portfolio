@@ -1,0 +1,36 @@
+{% load static%}
+<div class="wrapper">
+
+        
+    <header id="header">
+
+        <div class="header-items">
+
+            <div class="title">
+
+                {% comment %} <div class="logo-image">
+                    <img src="{% static 'images/logo.jpg' %}" alt="logo-image" height="70", width="70">
+                </div> {% endcomment %}
+                <div> 
+                    <h1 class="name">PORTFOLIO</h1>
+                </div>
+
+            </div>
+
+            <nav id="navbar">
+            
+                <ul>
+                    <li><a href={% url 'port:home'%}>Home</a></li>
+                    <li><a href={% url 'port:project'%}>Project</a></li>
+                    <li><a href={% url 'port:skill_list'%}>Skills</a></li>
+                    <li><a href={% url 'port:contact'%}>Contact</a></li>
+                    <li><a href='#'>Blog</a></li>
+        
+                </ul>
+        
+            </nav> 
+
+        </div>
+
+    </header>
+</div>    
