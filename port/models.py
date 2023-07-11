@@ -2,55 +2,12 @@ from django.db import models
 
 
 class Category(models.Model):
-<<<<<<< HEAD
     CATEGORY_CHOICES = [
         ("WD", "Web development"),
         ("MA", "Mobile Application"),
         ("DA", "Desktop Application"),
     ]
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
-=======
-    Category_used= [
-    ("WD", "Web development"),
-    ("MA", "Mobile Application"),
-    ("DA", "Desktop Application"),
-]
-    category= models.CharField(max_length=3, choices= Category_used)
-    
-class Skills(models.Model):
-    Skill_Used = [
-    ("DJ", "Django"),
-    ("PY", "Python"),
-    ("FL", "Flask"),
-    ("WB", "Web2py"),
-    ("AWS", "AWS"),
-    ("HT", "HTML"),
-    ("JS", "JavaScript"),
-    ("TY", "Typescript"),
-    ("JA", "Java"),
-    ("CSS", "CSS"),
-    ("DC", "Docker"),
-    ("PHP", "PHP"),
-    ("SQL", "SQL"),
-    ("SQ", "SQLite3"),
-    ("PG", "Postgrels"),
-    ("MQ", "MySQL"),
-    ("RA", "RESTAPI"),
-    ("DRF", "Django Rest Framework"),
-]
-    skill= models.CharField(max_length=3, choices=Skill_Used)    
-
-class Projects(models.Model):
-    title= models.CharField(max_length=30)
-    description= models.CharField(max_length=250)
-    category= models.ForeignKey(Category, on_delete= models.CASCADE)
-    skill= models.ForeignKey(Skills, on_delete=models.CASCADE)
-    date_added = models.DateTimeField(auto_now=True)
-    update= models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        ordering = ['-update', '-date_added']
->>>>>>> a6bfcf99574e3e5bdb0d9925b8372724f4ec555e
     
     def __str__(self):
         return self.get_category_display()
