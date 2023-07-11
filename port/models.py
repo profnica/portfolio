@@ -42,8 +42,9 @@ class Skills(models.Model):
 class Projects(models.Model):
     title = models.CharField(max_length=60)
     description = models.CharField(max_length=250)
-    category = models.ManyToManyField(Category)
     skill = models.ManyToManyField(Skills)
+    category = models.ManyToManyField(Category)
+    link = models.URLField(default='https://github.com/profnica', null=True)
     date_added = models.DateTimeField(auto_now=True)
     update = models.DateTimeField(auto_now_add=True)
 

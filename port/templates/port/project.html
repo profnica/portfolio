@@ -10,13 +10,13 @@
           <strong>Description:</strong> {{ project.description }}<br>
           <strong>Category:</strong> {{ project.category.all|join:", " }}<br>
           <strong>Skill:</strong> {{ project.skill.all|join:", " }}<br>
-          <a href="{% url 'port:project_edit' project.id %}">Edit</a>
-          <a href="{% url 'port:project_delete' project.id %}">Delete</a>
+          <a href="{% url 'project_edit' project.id %}">Edit</a>
+          <a href="{% url 'project_delete' project.id %}">Delete</a>
         </li>
       {% endfor %}
     </ul>
   {% else %}
     <p>No projects found.</p>
   {% endif %}
-  <a href="{% url 'port:project_add' %}">Add</a>
+  <a href="{% url 'project_add' %}">Add</a>
 {% endblock %}

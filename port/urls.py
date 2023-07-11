@@ -2,8 +2,6 @@ from django.urls import path
 from . import views
 
 # Update URLs in urls.py
-app_name = 'port'
-
 urlpatterns = [
     path('', views.home, name="home"),
     path('skills/', views.skill_list, name='skill_list'),

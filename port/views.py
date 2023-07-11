@@ -19,7 +19,7 @@ def skill_add(request):
     if request.method == 'POST':
         form = SkillForm(request.POST)
         if form.is_valid():
-            skill = form.save()
+            form.save()
             return redirect('skill_list')
     else:
         form = SkillForm()

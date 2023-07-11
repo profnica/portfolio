@@ -4,19 +4,18 @@ from django.core.exceptions import ValidationError
 
 
 class ProjectForm(forms.ModelForm):
+    skill = forms.MultipleChoiceField(
+        choices=Skills.SKILL_CHOICES,
+        widget=forms.SelectMultiple(attrs={'onclick': 'showOptions(this.nextElementSibling)'}),
+    )
+    category = forms.MultipleChoiceField(
+        choices=Category.CATEGORY_CHOICES,
+        widget=forms.SelectMultiple(attrs={'onclick': 'showOptions(this.nextElementSibling)'}),
+    )
+
     class Meta:
         model = Projects
-        fields = ['title', 'description', 'category', 'skill']
-        widgets = {
-            'skill': forms.SelectMultiple(attrs={'onclick': 'this.size=15;', 'onblur': 'this.size=0;'}),
-            'category': forms.SelectMultiple(attrs={'onclick': 'this.size=15;', 'onblur': 'this.size=0;'}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set the choices for skill and category fields
-        self.fields['skill'].choices = Skills.SKILL_CHOICES
-        self.fields['category'].choices = Category.CATEGORY_CHOICES
+        fields = ['title', 'description', 'skill', 'category', 'link']
 
 
 class SkillForm(forms.ModelForm):
@@ -39,7 +38,7 @@ class ContactForm(forms.ModelForm):
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'descriptions', 'category', 'content']
+        fields = ['title', 'descriptions', 'content']
     # to save the blogs
     def blogsave(self, commit=True):
         instance= super().save(commit=False)

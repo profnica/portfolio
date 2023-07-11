@@ -1,4 +1,3 @@
-<!-- skill_add.html -->
 {% extends 'main.html' %}
 
 {% block content %}
@@ -8,4 +7,14 @@
     {{ form.as_p }}
     <button type="submit">Add</button>
   </form>
+
+  <script>
+    function showSkills(element) {
+        element.size = 20;  // Set the size to display multiple options
+    }
+
+    function hideSkills(element) {
+        element.size = 1;  // Set the size to hide options
+    }
+  </script>
 {% endblock %}
