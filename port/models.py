@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 
 class Category(models.Model):
     CATEGORY_CHOICES = [
@@ -7,6 +7,7 @@ class Category(models.Model):
         ("MA", "Mobile Application"),
         ("DA", "Desktop Application"),
     ]
+    id = models.AutoField(primary_key=True)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     
     def __str__(self):
@@ -34,19 +35,21 @@ class Skills(models.Model):
         ("RA", "RESTAPI"),
         ("DRF", "Django Rest Framework"),
     ]
+    id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=100, choices=SKILL_CHOICES)
     
     def __str__(self):
         return self.get_skill_display()
 
 class Projects(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=60)
     description = models.CharField(max_length=250)
     skill = models.ManyToManyField(Skills)
     category = models.ManyToManyField(Category)
     link = models.URLField(default='https://github.com/profnica', null=True)
-    date_added = models.DateTimeField(auto_now=True)
-    update = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(default=datetime.now, blank=True)
+    update = models.DateTimeField(default=datetime.now, blank=True)
 
     class Meta:
         ordering = ['-update', '-date_added']
@@ -56,10 +59,10 @@ class Projects(models.Model):
 
 
 class BlogPost(models.Model):
-    title= models.CharField(max_length=50)
-    descriptions= models.CharField(max_length=300)
+    id = models.AutoField(primary_key=True)
+    title= models.CharField(max_length=200)
     content= models.TextField()
-    pub_date = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=datetime.now, blank= True)
     
     def __str__(self):
         return self.title

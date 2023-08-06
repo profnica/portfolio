@@ -5,24 +5,24 @@ from django.core.exceptions import ValidationError
 
 class ProjectForm(forms.ModelForm):
     skill = forms.MultipleChoiceField(
-        choices=Skills.SKILL_CHOICES,
-        widget=forms.SelectMultiple(attrs={'onclick': 'showOptions(this.nextElementSibling)'}),
-    )
+        choices=Skills.SKILL_CHOICES)
     category = forms.MultipleChoiceField(
-        choices=Category.CATEGORY_CHOICES,
-        widget=forms.SelectMultiple(attrs={'onclick': 'showOptions(this.nextElementSibling)'}),
-    )
+        choices=Category.CATEGORY_CHOICES)
 
     class Meta:
         model = Projects
         fields = ['title', 'description', 'skill', 'category', 'link']
-
 
 class SkillForm(forms.ModelForm):
     class Meta:
         model = Skills
         fields = '__all__'
 
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ['title', 'content']
+ 
         
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -34,14 +34,3 @@ class ContactForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
-    
-class BlogPostForm(forms.ModelForm):
-    class Meta:
-        model = BlogPost
-        fields = ['title', 'descriptions', 'content']
-    # to save the blogs
-    def blogsave(self, commit=True):
-        instance= super().save(commit=False)
-        if commit:
-            instance.save()
-        return instance 

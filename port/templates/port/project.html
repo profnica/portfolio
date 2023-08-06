@@ -10,7 +10,7 @@
           <strong>Description:</strong> {{ project.description }}<br>
           <strong>Category:</strong> {{ project.category.all|join:", " }}<br>
           <strong>Skill:</strong> {{ project.skill.all|join:", " }}<br>
-          <a href="{% url 'project_edit' project.id %}">Edit</a>
+          {% comment %} <a href="{% url 'project_edit' project.id %}">Edit</a> {% endcomment %}
           <a href="{% url 'project_delete' project.id %}">Delete</a>
         </li>
       {% endfor %}

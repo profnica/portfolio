@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
-from .forms import ProjectForm, ContactForm, BlogPostForm, SkillForm
+from .forms import ProjectForm, ContactForm, SkillForm, BlogPostForm
 from .models import Projects, BlogPost, Skills, ContactMessage, Category
 from django.conf import settings 
 from django.core.mail import send_mail                                                                                                                                                                                                           
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import user_passes_test
 
-
+def is_admin(user):
+    return user.is_authenticated and user.is_superuser 
 
 def home(request):
     return render(request, 'port/home.html')
@@ -15,6 +18,7 @@ def skill_list(request):
     skills = Skills.objects.all()
     return render(request, 'port/skill.html', {'skills': skills})
 
+@user_passes_test(is_admin)
 def skill_add(request):
     if request.method == 'POST':
         form = SkillForm(request.POST)
@@ -25,19 +29,9 @@ def skill_add(request):
         form = SkillForm()
     return render(request, 'port/skill_add.html', {'form': form})
 
-def skill_edit(request, pk):
-    skill = Skills.objects.get(id=pk)
-    if request.method == 'POST':
-        form = SkillForm(request.POST, instance=skill)
-        if form.is_valid():
-            form.save()
-            return redirect('skill_list')
-    else:
-        form = SkillForm(instance=skill)
-    return render(request, 'port/skill_edit.html', {'form': form, 'skill': skill})
-
-def skill_delete(request, pk):
-    skill = Skills.objects.get(id=pk)
+@user_passes_test(is_admin)
+def skill_delete(request, skill_id):
+    skill = Skills.objects.get(id=skill_id)
     if request.method == 'POST':
         skill.delete()
         return redirect('skill_list')
@@ -49,6 +43,7 @@ def project(request):
     projects = Projects.objects.all()
     return render(request, 'port/project.html', {'projects': projects})
 
+@user_passes_test(is_admin)
 def project_add(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
@@ -60,32 +55,51 @@ def project_add(request):
             project.save()
             project.skill.set(skills)
             project.category.set(categories)
+            form.save()
             return redirect('project')
     else:
         form = ProjectForm()
     return render(request, 'port/add_project.html', {'form': form})
 
-
-def project_edit(request, pk):
-    project= Projects.objects.get(id=pk)
-    if request.method=='POST':
-        form = ProjectForm(request.POST, instance=project)
-        if form.is_valid():
-            form.save()
-            return redirect('project')
-            
-    else:
-        form = ProjectForm(instance=project)
-    return render(request, 'port/edit_project.html', {'form':form, 'project':project})
-
-def project_delete(request, pk):
-    project= Projects.objects.get(id=pk)
+@user_passes_test(is_admin)
+def project_delete(request, project_id):
+    project= Projects.objects.get(id=project_id)
     if request.method =='POST':
         project.delete()
         return redirect('project')
     else:
-        return render(request, 'port/delete_project.html', {'project':project})
+        return render(request, 'port/delete_project.html', {'project':project})   
     
+# for blog post 
+def blog(request):
+    blog_posts = BlogPost.objects.all()
+    return render(request, 'port/blog.html', {'blog_posts': blog_posts})
+
+def blog_detail(request, blogpost_id):
+    post = get_object_or_404(BlogPost, id=blogpost_id)
+    return render(request, 'port/blog_details.html', {'post': post})
+
+@user_passes_test(is_admin)
+def blog_add(request, blogpost_id):
+    post = get_object_or_404(BlogPost, id=blogpost_id)
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog')
+    else:
+        form = BlogPostForm(instance=post)
+    return render(request, 'port/blog_form.html', {'form': form})
+
+
+@user_passes_test(is_admin)
+def blog_delete(request, blogpost_id):
+    post = get_object_or_404(BlogPost, id=blogpost_id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('blog')
+    return render(request, 'port/blog_delete.html', {'post': post})
+
 # for direct contact with me!!
 def contact(request):
     if request.method == 'POST':
