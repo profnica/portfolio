@@ -1,0 +1,39 @@
+<!-- skill_edit.html -->
+{% extends 'main.html' %}
+
+{% block content %}
+  <style>
+    form {
+      width: 400px;
+      margin: 0 auto;
+    }
+    
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+  </style>
+  <h1>Edit Skill</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

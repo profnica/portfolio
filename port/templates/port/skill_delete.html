@@ -1,0 +1,29 @@
+<!-- skill_delete.html -->
+{% extends 'main.html' %}
+
+{% block content %}
+  <style>
+    p {
+      margin-bottom: 20px;
+    }
+    
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #c82333;
+    }
+  </style>
+  <h1>Delete Skill</h1>
+  <p>Are you sure you want to delete the skill "{{ skill.get_skill_display }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}

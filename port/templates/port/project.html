@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Web Page Title</title>
+    
+    <!-- Include the CSS styling here -->
+    <style>
+        /* Add custom styling to list items */
+        li {
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          padding: 15px;
+          margin-bottom: 15px;
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+          color: #007bff;
+        }
+
+        /* Style the link with a button appearance */
+        a {
+          color: #007bff;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+
+        .delete-button {
+          display: inline-block;
+          margin-top: 10px;
+          padding: 5px 10px;
+          background-color: #dc3545;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .delete-button:hover {
+          background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Your existing HTML content here -->
+{% extends 'main.html' %}
+
+{% block content %}
+  <h1>Projects</h1>
+  {% if projects %}
+    <ul>
+      {% for project in projects %}
+        <li class="project-item">
+          <strong>Title:</strong> {{ project.title }}<br>
+          <strong>Description:</strong> {{ project.description }}<br>
+          <strong>Skill:</strong> {{ project.skill.all|join:", " }}<br>
+          <strong>Link:</strong> <a href="{{ project.link }}" target="_blank">{{ project.link }}</a><br>
+          <a href="{% url 'project_delete' project.id %}" class="btn btn-primary delete-button">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No projects found.</p>
+  {% endif %}
+  <a href="{% url 'project_add' %}" class="btn btn-primary add-button">Add New Project</a>
+{% endblock %}
+
+</body>
+</html>

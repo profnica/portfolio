@@ -1,0 +1,50 @@
+{% extends 'main.html'%}
+
+{% block content %}
+<head>
+    <title>Blog Posts</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl1Y/M6YlPKuFPi5Bi7j3Ov1zCkpeVoCXp4oMGZZPm" crossorigin="anonymous">
+    <!-- Add custom CSS -->
+    <style>
+        body {
+            padding: 20px;
+        }
+        .blog-post {
+            margin-bottom: 15px;
+        }
+        .add-button {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Blog Posts</h1>
+        <div class="blog-post">
+            <ul class="list-group">
+                {% for post in blog_posts %}
+                  <h2><a href="{% url 'blog_detail' post.id %}">{{ post.title }}</a></h2>
+                  <p>{{ post.content|truncatechars:150 }}</p>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {% comment %} <a href="{% url 'blog_edit' post.pk %}"class="btn btn-danger btn-sm">Edit</a> {% endcomment %}
+                    <a href="{% url 'blog_delete' post.id%}" class="btn btn-danger btn-sm">Delete</a>
+                  </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'blog_add' %}" class="btn btn-primary add-button">Add New Blog</a>
+    </div>
+</body>
+
+{% comment %} <body>
+  <h1>Blog Posts</h1>
+  <ul>
+      {% for post in blog_posts %}
+      <li><a href="{% url 'blog_edit' post.pk %}">{{ post.title }}</a> - <a href="{% url 'blog_delete' post.pk %}">Delete</a></li>
+      {% endfor %}
+  </ul>
+  <a href="{% url 'blog_add' %}">Add New Post</a>
+</body> {% endcomment %}
+
+{% endblock %}

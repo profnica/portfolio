@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+
+{%load static %}
+{% block content %}
+
+  <!-- Eye-catching Elements -->
+  <div class="eye-catching-elements">
+    <p class='lead'>
+        Welcome to my portfolio website! My name is Adefolalu Adegboyega. 
+        I'm a passionate developer with expertise in python programming languages and 
+        technologies. Feel free to explore my projects and get in touch.
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div style="height: 500px;">
+        <div class="card-body">
+           <!-- Programming Language Icons -->
+            <div class="programming-icons">
+                <img class='w-25' src="{% static 'Images/python.png' %}" alt="Python">
+                <img class='w-25' src="{% static 'Images/django.png' %}" alt="Django">
+                <img class='w-25' src="{% static 'Images/html.png' %}" alt="HTML">
+                <img class='w-25' src="{% static 'Images/css-3.png' %}" alt="CSS">
+                <img class='w-25' src="{% static 'Images/docker.png' %}" alt="Docker">
+                <img class='w-25' src="{% static 'Images/kubernetes.png' %}" alt="Kubernetes">
+                <img class='w-25' src="{% static 'Images/mysql.png' %}" alt=",MySQL">
+                <!-- Add more programming language icons as needed -->
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card bg-dark text-white">
+            <img class="card-img" src="{% static 'Images/me.jpg' %}" alt="Card image">
+          </div>
+    </div>
+  </div>
+
+ 
+
+  <!-- Social Media Icons (Footer) -->
+  <footer id="main-footer">
+    <div class="social-media-icons">
+        <a href="https://twitter.com/profnica10" class="icon-button twitter"><i class="fa fa-twitter"></i>
+            <span></span>
+        </a>
+        <a href="https://web.facebook.com/profnica.tpaing" class="icon-button facebook"><i class="fa fa-facebook"></i>
+            <span></span>
+        </a>
+        <a href="mailto:your.akinolaay056@gmail.com" class="icon-button google"><i class="fa fa-google"></i>
+            <span></span>
+        </a>
+        <a href="https://www.linkedin.com/in/adegboyega-adefolalu-810729190/" class="icon-button linkedin"><i class="fa fa-linkedin"></i>
+            <span></span>
+        </a>
+        <a href="https://www.github.com/profnica" class="icon-button github"><i class="fa fa-github"></i>
+            <span></span>
+        </a>
+    </div>
+    <p>Copyright &copy; 2023, Adefolalu</p>
+</footer>
+{% endblock %}

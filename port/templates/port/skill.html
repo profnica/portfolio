@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    ul li {
+      margin-bottom: 10px;
+    }
+    
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <h1>Skills</h1>
+  <ul>
+    {% for skill in skills %}
+      <li>{{ skill}}</li>
+      {% comment %} <li><a href="{% url 'skill_edit' skill.id %}">Edit</a></li> {% endcomment %}
+      <li><a href="{% url 'skill_delete' skill.id %}" class="btn btn-primary delete-button">Delete</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'skill_add' %}" class="btn btn-primary add-button">Add New Skill</a>
+{% endblock %}
